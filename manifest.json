@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "hellointerview cleaner",
+  "version": "1.0",
+  "description": "Clean up page elements with one click",
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": [
+    "https://www.hellointerview.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Clean Page"
+  }
+}
