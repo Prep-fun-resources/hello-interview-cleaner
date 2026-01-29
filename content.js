@@ -64,4 +64,57 @@ document.querySelectorAll('[aria-expanded="false"]').forEach(el => el.click());
 document.getElementById('video-section')?.remove();
 
 
+(() => {
+  // active code block
+  const pre = document.querySelector('pre.shiki');
+  if (!pre) {
+    console.error('Active code block not found');
+    return;
+  }
+
+  // Fix the <pre> itself
+  pre.style.maxHeight = 'none';
+  pre.style.height = 'auto';
+  pre.style.overflow = 'visible';
+
+  // Walk up and remove scroll constraints
+  let el = pre.parentElement;
+  while (el && el !== document.body) {
+    const style = getComputedStyle(el);
+
+    if (
+      style.overflow === 'auto' ||
+      style.overflow === 'scroll' ||
+      style.maxHeight !== 'none'
+    ) {
+      el.style.overflow = 'visible';
+      el.style.maxHeight = 'none';
+      el.style.height = 'auto';
+    }
+
+    el = el.parentElement;
+  }
+
+  console.log('Scrolling removed for active tab');
+})();
+
+(() => {
+  const pre = document.querySelector('pre.shiki');
+  if (!pre) return;
+
+  // Allow wrapping
+  pre.style.whiteSpace = 'pre-wrap';   // key change
+  pre.style.wordBreak = 'break-word';  // safety for long tokens
+  pre.style.overflowX = 'visible';
+
+  // Shiki renders spans per line – ensure they can wrap
+  pre.querySelectorAll('.line').forEach(line => {
+    line.style.whiteSpace = 'pre-wrap';
+    line.style.wordBreak = 'break-word';
+  });
+
+  console.log('Horizontal scrolling removed, wrapping enabled');
+})();
+
+
 console.log('Page cleaned!');
