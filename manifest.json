@@ -7,8 +7,14 @@
   "host_permissions": [
     "https://www.hellointerview.com/*"
   ],
+  "icons": {
+    "16": "logo.png",
+    "48": "logo.png",
+    "128": "logo.png"
+  },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Clean Page"
+    "default_title": "Clean Page",
+    "default_icon": "logo.png"
   }
 }
