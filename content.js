@@ -116,5 +116,9 @@ document.getElementById('video-section')?.remove();
   console.log('Horizontal scrolling removed, wrapping enabled');
 })();
 
+// expand "show more" buttons
+[...document.querySelectorAll('button')].filter(btn => 
+  btn.textContent.toLowerCase().includes('show more')
+).forEach(btn => btn.click());
 
 console.log('Page cleaned!');
